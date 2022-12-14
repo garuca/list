@@ -6,10 +6,10 @@ class ContentModel implements Content {
   @override
   String? text;
 
-  ContentModel(
-      {this.id,
-      this.text,
-    });
+  ContentModel({
+    this.id,
+    this.text,
+  });
 
   ContentModel.fromMap(Map<String, dynamic> json) {
     id = json['id'];
