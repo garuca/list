@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:list/features/content/common/domain/entities/content.dart';
+import 'package:list/common/domain/entities/content.dart';
 import 'package:list/features/content/list/domain/errors/errors.dart';
 import 'package:list/features/content/list/domain/repositories/content_repository.dart';
 

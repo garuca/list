@@ -6,8 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:list/features/content/common/domain/entities/content.dart'
-    as _i6;
+import 'package:list/common/domain/entities/content.dart' as _i6;
 import 'package:list/features/content/list/domain/errors/errors.dart' as _i5;
 import 'package:list/features/content/list/domain/repositories/content_repository.dart'
     as _i3;
