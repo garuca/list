@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:list/features/content/list/presenter/ui/list_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 
 final GoRouter _router = GoRouter(
@@ -17,8 +17,8 @@ final GoRouter _router = GoRouter(
   ],
 );
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
