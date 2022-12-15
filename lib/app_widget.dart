@@ -23,6 +23,7 @@ class AppWidgetState extends State<AppWidget> {
     super.dispose();
     disposeModule();
   }
+
   final GoRouter _router = GoRouter(
     routes: <RouteBase>[
       GoRoute(
@@ -37,13 +38,13 @@ class AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter',
-        theme: ThemeData(
-          fontFamily: 'CircularStd',
-          primarySwatch: Colors.blue,
-        ),
-        routerConfig: _router,
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter',
+      theme: ThemeData(
+        fontFamily: 'CircularStd',
+        primarySwatch: Colors.blue,
+      ),
+      routerConfig: _router,
     );
   }
 }
