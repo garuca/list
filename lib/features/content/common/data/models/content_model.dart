@@ -1,4 +1,4 @@
-import 'package:list/features/content/common/domain/entities/Content.dart';
+import 'package:list/features/content/common/domain/entities/content.dart';
 
 class ContentModel implements Content {
   @override
