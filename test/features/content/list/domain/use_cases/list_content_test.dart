@@ -14,7 +14,7 @@ main() {
   final repository = MockContentRepository();
   final useCase = ListContentImpl(repository);
 
-  test("Scenery 1 Return list of Cars", () async {
+  test("Scenery 1 Return list of contents", () async {
     when(repository.list()).thenAnswer((_) async => const Right(<Content>[]));
     final result = await useCase();
     expect(result | null, isA<List<Content>?>());
@@ -23,7 +23,7 @@ main() {
     when(repository.list()).thenAnswer((_) async => Left(EmptyList()));
     final response = await useCase();
     final result = response.fold(
-      (failure) => EmptyList(),
+      (failure) => failure,
       (success) => const Right(<Content>[]),
     );
     expect(result, isInstanceOf<EmptyList>());
