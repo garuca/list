@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:list/features/content/list/presenter/ui/list_page.dart';
@@ -37,14 +38,23 @@ class AppWidgetState extends State<AppWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter',
-      theme: ThemeData(
-        fontFamily: 'CircularStd',
-        primarySwatch: Colors.blue,
-      ),
-      routerConfig: _router,
+    return FutureBuilder(
+      future: Firebase.initializeApp(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter',
+            theme: ThemeData(
+              fontFamily: 'CircularStd',
+              primarySwatch: Colors.blue,
+            ),
+            routerConfig: _router,
+          );
+        }
+
+        return const CircularProgressIndicator();
+      },
     );
   }
 }
