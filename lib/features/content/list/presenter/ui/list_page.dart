@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:list/features/content/list/presenter/content_cubit.dart';
-import 'package:list/features/content/list/presenter/content_state.dart';
+import 'package:list/features/content/list/presenter/list_cubit.dart';
+import 'package:list/features/content/list/presenter/list_state.dart';
 import 'package:list/features/content/list/presenter/ui/list_loading_page.dart';
-
+import 'package:go_router/go_router.dart';
 class ListPage extends StatefulWidget {
   const ListPage({
     super.key,
@@ -20,7 +20,7 @@ class _MyListPageState extends State<ListPage> {
       appBar: AppBar(
         title: Text(""),
       ),
-      body: BlocBuilder<ContentCubit, ContentState>(builder: (context, state) {
+      body: BlocBuilder<ListCubit, ListState>(builder: (builderContext, state) {
         if (state is StartState) {
           return const Center(
             child: FeedLoadingPage(),
@@ -41,8 +41,9 @@ class _MyListPageState extends State<ListPage> {
           return Container();
         }
       }),
-      floatingActionButton: const FloatingActionButton(
-        onPressed: null,
+      floatingActionButton:  FloatingActionButton(
+        onPressed: () {
+          context.go('/add');},
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
