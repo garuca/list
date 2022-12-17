@@ -1,38 +1,38 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:list/common/data/models/content_model.dart';
-import 'package:list/features/content/add/data/data_source/add_content_data_source.dart';
-import 'package:list/features/content/add/data/data_source/add_content_data_source_impl.dart';
-import 'package:list/features/content/add/data/repositories/add_content_repository_impl.dart';
-import 'package:list/features/content/add/domain/repositories/add_content_repository.dart';
-import 'package:list/features/content/add/domain/use_cases/add_content.dart';
-import 'package:list/features/content/add/presenter/add_cubit.dart';
-import 'package:list/features/content/list/data/data_source/content_data_source.dart';
-import 'package:list/features/content/list/data/data_source/content_data_source_impl.dart';
-import 'package:list/features/content/list/data/repositories/content_repository_impl.dart';
-import 'package:list/features/content/list/domain/repositories/content_repository.dart';
-import 'package:list/features/content/list/domain/use_cases/list_content.dart';
-import 'package:list/features/content/list/presenter/list_cubit.dart';
+import 'package:list/common/data/models/task_model.dart';
+import 'package:list/features/task/add/data/data_source/add_task_data_source.dart';
+import 'package:list/features/task/add/data/data_source/add_task_data_source_impl.dart';
+import 'package:list/features/task/add/data/repositories/add_task_repository_impl.dart';
+import 'package:list/features/task/add/domain/repositories/add_task_repository.dart';
+import 'package:list/features/task/add/domain/use_cases/add_task.dart';
+import 'package:list/features/task/add/presenter/add_cubit.dart';
+import 'package:list/features/task/list/data/data_source/task_data_source.dart';
+import 'package:list/features/task/list/data/data_source/task_data_source_impl.dart';
+import 'package:list/features/task/list/data/repositories/task_repository_impl.dart';
+import 'package:list/features/task/list/domain/repositories/task_repository.dart';
+import 'package:list/features/task/list/domain/use_cases/list_task.dart';
+import 'package:list/features/task/list/presenter/list_cubit.dart';
 
 final sl = GetIt.I;
 
 startModule([Dio? dio]) {
-  sl.registerFactory<ListContent>(
-      () => ListContentImpl(sl<ContentRepository>()));
-  sl.registerFactory<ContentRepository>(
-      () => ContentRepositoryImpl(sl<ContentDataSource>()));
-  sl.registerFactory<ContentDataSource>(() => ContentDataSourceImpl(sl()));
+  sl.registerFactory<ListTask>(
+      () => ListTaskImpl(sl<TaskRepository>()));
+  sl.registerFactory<TaskRepository>(
+      () => TaskRepositoryImpl(sl<TaskDataSource>()));
+  sl.registerFactory<TaskDataSource>(() => TaskDataSourceImpl(sl()));
   sl.registerFactory(() => dio ?? Dio());
-  sl.registerLazySingleton(() => ListCubit(sl<ListContent>()));
-  sl.registerFactory<List<ContentModel>>(() => <ContentModel>[]);
+  sl.registerLazySingleton(() => ListCubit(sl<ListTask>()));
+  sl.registerFactory<List<TaskModel>>(() => <TaskModel>[]);
 
-  sl.registerFactory<AddContent>(
-          () => AddContentImpl(sl<AddContentRepository>()));
-  sl.registerFactory<AddContentRepository>(
-          () => AddContentRepositoryImpl(sl<AddContentDataSource>()));
-  sl.registerFactory<AddContentDataSource>(() => AddContentDataSourceImpl(sl()));
-  sl.registerFactory(() => AddCubit(sl<AddContent>()));
-  sl.registerFactory<ContentModel>(() => ContentModel());
+  sl.registerFactory<AddTask>(
+          () => AddTaskImpl(sl<AddTaskRepository>()));
+  sl.registerFactory<AddTaskRepository>(
+          () => AddTaskRepositoryImpl(sl<AddTaskDataSource>()));
+  sl.registerFactory<AddTaskDataSource>(() => AddTaskDataSourceImpl(sl()));
+  sl.registerFactory(() => AddCubit(sl<AddTask>()));
+  sl.registerFactory<TaskModel>(() => TaskModel());
 
 }
 

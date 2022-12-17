@@ -56,7 +56,7 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyAJYvGhNuSBNdRQjBGGxZV_bPTkQNfTTFU',
     appId: '1:242527333064:android:57def250a5a3135b1213fd',
     messagingSenderId: '242527333064',
-    projectId: 'content-b78b7',
-    storageBucket: 'content-b78b7.appspot.com',
+    projectId: 'task-b78b7',
+    storageBucket: 'task-b78b7.appspot.com',
   );
 }
