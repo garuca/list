@@ -11,10 +11,10 @@ class AddTaskDataSourceImpl implements AddTaskDataSource {
 
   @override
   Future<TaskModel?> addTask(Task task) async {
-    CollectionReference taskColection =
+    CollectionReference taskCollection =
         FirebaseFirestore.instance.collection('task');
     try {
-      final response = await taskColection.add({
+      final response = await taskCollection.add({
         'text': task.text,
       });
       task.id = response.id;
