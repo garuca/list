@@ -13,6 +13,13 @@ import 'package:list/features/task/list/data/repositories/task_repository_impl.d
 import 'package:list/features/task/list/domain/repositories/task_repository.dart';
 import 'package:list/features/task/list/domain/use_cases/list_task.dart';
 import 'package:list/features/task/list/presenter/list_cubit.dart';
+import 'package:list/features/task/search/data/data_source/search_task_data_source.dart';
+import 'package:list/features/task/search/data/data_source/search_task_data_source_impl.dart';
+import 'package:list/features/task/search/data/repositories/search_task_repository_impl.dart';
+import 'package:list/features/task/search/domain/repositories/search_repository.dart';
+import 'package:list/features/task/search/domain/use_cases/search_list_task.dart';
+import 'package:list/features/task/search/presenter/search_cubit.dart';
+import 'package:list/features/task/search/presenter/ui/search_page.dart';
 
 final sl = GetIt.I;
 
@@ -33,6 +40,13 @@ startModule([Dio? dio]) {
   sl.registerFactory<AddTaskDataSource>(() => AddTaskDataSourceImpl(sl()));
   sl.registerFactory(() => AddCubit(sl<AddTask>()));
   sl.registerFactory<TaskModel>(() => TaskModel());
+
+  sl.registerFactory<SearchListTask>(
+          () => SearchListTaskImpl(sl<SearchTaskRepository>()));
+  sl.registerFactory<SearchTaskRepository>(
+          () => SearchTaskRepositoryImpl(sl<SearchDataSource>()));
+  sl.registerFactory<SearchDataSource>(() => SearchDataSourceImpl(sl()));
+  sl.registerFactory(() => SearchCubit(sl<SearchListTask>()));
 
 }
 

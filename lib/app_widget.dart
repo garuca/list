@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:list/features/task/add/presenter/ui/add_page.dart';
 import 'package:list/features/task/list/presenter/ui/list_page.dart';
+import 'package:list/features/task/search/presenter/ui/search_page.dart';
 
 import 'app_module.dart';
 
@@ -31,13 +32,19 @@ class AppWidgetState extends State<AppWidget> {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const ListPage();
+          return const SearchPage();
         },
         routes: <RouteBase>[
           GoRoute(
             path: 'add',
             builder: (BuildContext context, GoRouterState state) {
               return const AddPage();
+            },
+          ),
+          GoRoute(
+            path: 'search',
+            builder: (BuildContext context, GoRouterState state) {
+              return const SearchPage();
             },
           ),
         ],
