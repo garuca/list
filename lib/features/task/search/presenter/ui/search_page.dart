@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:list/features/task/list/presenter/ui/list_loading_page.dart';
+import 'package:list/features/task/search/presenter/ui/search_loading_page.dart';
 import 'package:list/features/task/search/presenter/search_cubit.dart';
 import 'package:list/features/task/search/presenter/search_state.dart';
 
