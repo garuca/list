@@ -9,12 +9,8 @@ class SearchDataSourceImpl implements SearchDataSource {
 
   @override
   Future<List<TaskModel>?> getTasks(String? word) async {
-    try {
-      final response = await taskCollection
-          .where('text', isGreaterThanOrEqualTo: word)
-          .get();
-      return response.docs.map((e) => TaskModel.fromObject(e)).toList();
-    } catch (e) {}
-    return null;
+    final response =
+        await taskCollection.where('text', isGreaterThanOrEqualTo: word).get();
+    return response.docs.map((e) => TaskModel.fromObject(e)).toList();
   }
 }

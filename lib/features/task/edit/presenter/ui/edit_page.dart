@@ -37,8 +37,8 @@ class _EditPageState extends State<EditPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future nav() async {
-      await BlocProvider.of<ListCubit>(context, listen: true).execute();
+    nav() {
+      BlocProvider.of<ListCubit>(context, listen: true).execute();
       context.pop();
     }
 

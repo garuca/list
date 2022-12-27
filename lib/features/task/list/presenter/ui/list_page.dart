@@ -18,9 +18,7 @@ class _MyListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(""),
-      ),
+      appBar: AppBar(),
       body: BlocBuilder<ListCubit, ListState>(builder: (builderContext, state) {
         if (state is StartState) {
           return const Center(
@@ -54,7 +52,7 @@ class _MyListPageState extends State<ListPage> {
           context.go('/add');
         },
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

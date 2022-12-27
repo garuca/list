@@ -9,10 +9,7 @@ class TaskDataSourceImpl implements TaskDataSource {
 
   @override
   Future<List<TaskModel>?> getTasks() async {
-    try {
-      final response = await taskCollection.get();
-      return response.docs.map((e) => TaskModel.fromObject(e)).toList();
-    } catch (e) {}
-    return null;
+    final response = await taskCollection.get();
+    return response.docs.map((e) => TaskModel.fromObject(e)).toList();
   }
 }

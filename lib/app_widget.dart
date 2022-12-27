@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:list/features/task/add/presenter/ui/add_page.dart';
 import 'package:list/features/task/edit/presenter/ui/edit_page.dart';
 import 'package:list/features/task/list/presenter/ui/list_page.dart';
-import 'package:list/features/task/search/presenter/ui/search_page.dart';
 
 import 'app_module.dart';
 

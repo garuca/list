@@ -36,8 +36,8 @@ class _AddPageState extends State<AddPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future nav() async {
-      await BlocProvider.of<ListCubit>(context, listen: true).execute();
+    nav() {
+      BlocProvider.of<ListCubit>(context, listen: true).execute();
       context.pop();
     }
 
@@ -53,7 +53,8 @@ class _AddPageState extends State<AddPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                     child: TextField(
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -63,8 +64,8 @@ class _AddPageState extends State<AddPage> {
                     ),
                   ),
                   Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 16),
                       child: TextButton(
                           style: ButtonStyle(
                             foregroundColor:
@@ -86,7 +87,7 @@ class _AddPageState extends State<AddPage> {
                           onPressed: () {
                             cubit.execute(Task(text: textController.text));
                           },
-                          child: Text('TextButton'))),
+                          child: const Text('TextButton'))),
                 ],
               );
             } else if (state is LoadingState) {
