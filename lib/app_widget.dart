@@ -46,7 +46,8 @@ class AppWidgetState extends State<AppWidget> {
               path: 'edit/:id/:text',
               name: 'edit',
               builder: (BuildContext context, GoRouterState state) {
-                return EditPage(id: state.params['id']!,text: state.params['text']!);
+                return EditPage(
+                    id: state.params['id']!, text: state.params['text']!);
               }),
         ],
       ),

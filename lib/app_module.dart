@@ -29,38 +29,34 @@ import 'features/task/edit/data/repositories/edit_task_repository_impl.dart';
 final sl = GetIt.I;
 
 startModule([CollectionReference? taskCollection]) {
-  sl.registerFactory<ListTask>(
-      () => ListTaskImpl(sl<TaskRepository>()));
+  sl.registerFactory<ListTask>(() => ListTaskImpl(sl<TaskRepository>()));
   sl.registerFactory<TaskRepository>(
       () => TaskRepositoryImpl(sl<TaskDataSource>()));
   sl.registerFactory<TaskDataSource>(() => TaskDataSourceImpl(sl()));
-  sl.registerFactory(() => taskCollection ?? FirebaseFirestore.instance.collection('task'));
+  sl.registerFactory(
+      () => taskCollection ?? FirebaseFirestore.instance.collection('task'));
   sl.registerLazySingleton(() => ListCubit(sl<ListTask>()));
   sl.registerFactory<List<TaskModel>>(() => <TaskModel>[]);
 
-  sl.registerFactory<AddTask>(
-          () => AddTaskImpl(sl<AddTaskRepository>()));
+  sl.registerFactory<AddTask>(() => AddTaskImpl(sl<AddTaskRepository>()));
   sl.registerFactory<AddTaskRepository>(
-          () => AddTaskRepositoryImpl(sl<AddTaskDataSource>()));
+      () => AddTaskRepositoryImpl(sl<AddTaskDataSource>()));
   sl.registerFactory<AddTaskDataSource>(() => AddTaskDataSourceImpl(sl()));
   sl.registerFactory(() => AddCubit(sl<AddTask>()));
   sl.registerFactory<TaskModel>(() => TaskModel());
 
   sl.registerFactory<SearchListTask>(
-          () => SearchListTaskImpl(sl<SearchTaskRepository>()));
+      () => SearchListTaskImpl(sl<SearchTaskRepository>()));
   sl.registerFactory<SearchTaskRepository>(
-          () => SearchTaskRepositoryImpl(sl<SearchDataSource>()));
+      () => SearchTaskRepositoryImpl(sl<SearchDataSource>()));
   sl.registerFactory<SearchDataSource>(() => SearchDataSourceImpl(sl()));
   sl.registerFactory(() => SearchCubit(sl<SearchListTask>()));
 
-  sl.registerFactory<EditTask>(
-          () => EditTaskImpl(sl<EditTaskRepository>()));
+  sl.registerFactory<EditTask>(() => EditTaskImpl(sl<EditTaskRepository>()));
   sl.registerFactory<EditTaskRepository>(
-          () => EditTaskRepositoryImpl(sl<EditTaskDataSource>()));
+      () => EditTaskRepositoryImpl(sl<EditTaskDataSource>()));
   sl.registerFactory<EditTaskDataSource>(() => EditTaskDataSourceImpl(sl()));
   sl.registerFactory(() => EditCubit(sl<EditTask>()));
-
-
 }
 
 disposeModule() {

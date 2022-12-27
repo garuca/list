@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 class EditPage extends StatefulWidget {
   final String id;
   final String text;
-  const EditPage({super.key,required this.id,required this.text});
+  const EditPage({super.key, required this.id, required this.text});
 
   @override
   State<EditPage> createState() => _EditPageState();
@@ -66,34 +66,31 @@ class _EditPageState extends State<EditPage> {
                   Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 16),
-                      child: Builder(
-                        builder: (context) {
-                          return TextButton(
-                              style: ButtonStyle(
-                                foregroundColor:
-                                    MaterialStateProperty.all<Color>(Colors.blue),
-                                overlayColor:
-                                    MaterialStateProperty.resolveWith<Color?>(
-                                  (Set<MaterialState> states) {
-                                    if (states.contains(MaterialState.hovered)) {
-                                      return Colors.blue.withOpacity(0.04);
-                                    }
-                                    if (states.contains(MaterialState.focused) ||
-                                        states.contains(MaterialState.pressed)) {
-                                      return Colors.blue.withOpacity(0.12);
-                                    }
-                                    return null; // Defer to the widget's default.
-                                  },
-                                ),
+                      child: Builder(builder: (context) {
+                        return TextButton(
+                            style: ButtonStyle(
+                              foregroundColor:
+                                  MaterialStateProperty.all<Color>(Colors.blue),
+                              overlayColor:
+                                  MaterialStateProperty.resolveWith<Color?>(
+                                (Set<MaterialState> states) {
+                                  if (states.contains(MaterialState.hovered)) {
+                                    return Colors.blue.withOpacity(0.04);
+                                  }
+                                  if (states.contains(MaterialState.focused) ||
+                                      states.contains(MaterialState.pressed)) {
+                                    return Colors.blue.withOpacity(0.12);
+                                  }
+                                  return null; // Defer to the widget's default.
+                                },
                               ),
-                              onPressed: () {
-                                cubit.execute(
-
-                                    Task(id: widget.id, text: textController.text));
-                              },
-                              child: const Text('TextButton'));
-                        }
-                      )),
+                            ),
+                            onPressed: () {
+                              cubit.execute(Task(
+                                  id: widget.id, text: textController.text));
+                            },
+                            child: const Text('TextButton'));
+                      })),
                 ],
               );
             } else if (state is LoadingState) {

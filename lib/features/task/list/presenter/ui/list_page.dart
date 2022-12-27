@@ -38,8 +38,10 @@ class _MyListPageState extends State<ListPage> {
                   title: GestureDetector(
                       child: Text("${state.list![i].text}"),
                       onTap: () {
-                        context.goNamed('edit',
-                            params: {'id': "${state.list![i].id}",'text': "${state.list![i].text}"});
+                        context.goNamed('edit', params: {
+                          'id': "${state.list![i].id}",
+                          'text': "${state.list![i].text}"
+                        });
                       }),
                 );
               });

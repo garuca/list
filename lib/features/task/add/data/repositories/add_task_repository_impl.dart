@@ -5,7 +5,6 @@ import 'package:list/features/task/add/data/data_source/add_task_data_source.dar
 import 'package:list/features/task/add/domain/errors/add_errors.dart';
 import 'package:list/features/task/add/domain/repositories/add_task_repository.dart';
 
-
 class AddTaskRepositoryImpl implements AddTaskRepository {
   final AddTaskDataSource dataSource;
 

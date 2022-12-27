@@ -1,7 +1,6 @@
 import 'package:list/common/domain/entities/task.dart';
 import 'package:list/features/task/search/domain/errors/search_errors.dart';
 
-
 abstract class SearchState {}
 
 class StartState implements SearchState {

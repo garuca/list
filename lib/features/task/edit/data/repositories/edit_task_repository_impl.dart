@@ -5,7 +5,6 @@ import 'package:list/features/task/edit/data/data_source/edit_task_data_source.d
 import 'package:list/features/task/edit/domain/errors/edit_errors.dart';
 import 'package:list/features/task/edit/domain/repositories/edit_task_repository.dart';
 
-
 class EditTaskRepositoryImpl implements EditTaskRepository {
   final EditTaskDataSource dataSource;
 

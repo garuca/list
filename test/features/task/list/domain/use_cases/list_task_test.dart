@@ -15,7 +15,8 @@ main() {
   final useCase = ListTaskImpl(repository);
 
   test("Scenery 1 Return list of tasks", () async {
-    when(repository.list()).thenAnswer((_) async => const dartz.Right(<Task>[]));
+    when(repository.list())
+        .thenAnswer((_) async => const dartz.Right(<Task>[]));
     final result = await useCase();
     expect(result | null, isA<List<Task>?>());
   });

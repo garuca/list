@@ -48,7 +48,7 @@ class _SearchPageState extends State<SearchPage> {
           BlocBuilder<SearchCubit, SearchState>(
               builder: (builderContext, state) {
             if (state is StartState) {
-              return  Container();
+              return Container();
             } else if (state is LoadingState) {
               return const FeedLoadingPage();
             } else if (state is SuccessState) {
