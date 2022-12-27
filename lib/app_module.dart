@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:list/common/data/models/task_model.dart';
 import 'package:list/features/task/add/data/data_source/add_task_data_source.dart';
@@ -7,6 +7,11 @@ import 'package:list/features/task/add/data/repositories/add_task_repository_imp
 import 'package:list/features/task/add/domain/repositories/add_task_repository.dart';
 import 'package:list/features/task/add/domain/use_cases/add_task.dart';
 import 'package:list/features/task/add/presenter/add_cubit.dart';
+import 'package:list/features/task/edit/data/data_source/edit_task_data_source.dart';
+import 'package:list/features/task/edit/data/data_source/edit_task_data_source_impl.dart';
+import 'package:list/features/task/edit/domain/repositories/edit_task_repository.dart';
+import 'package:list/features/task/edit/domain/use_cases/edit_task.dart';
+import 'package:list/features/task/edit/presenter/edit_cubit.dart';
 import 'package:list/features/task/list/data/data_source/task_data_source.dart';
 import 'package:list/features/task/list/data/data_source/task_data_source_impl.dart';
 import 'package:list/features/task/list/data/repositories/task_repository_impl.dart';
@@ -19,17 +24,17 @@ import 'package:list/features/task/search/data/repositories/search_task_reposito
 import 'package:list/features/task/search/domain/repositories/search_repository.dart';
 import 'package:list/features/task/search/domain/use_cases/search_list_task.dart';
 import 'package:list/features/task/search/presenter/search_cubit.dart';
-import 'package:list/features/task/search/presenter/ui/search_page.dart';
+import 'features/task/edit/data/repositories/edit_task_repository_impl.dart';
 
 final sl = GetIt.I;
 
-startModule([Dio? dio]) {
+startModule([CollectionReference? taskCollection]) {
   sl.registerFactory<ListTask>(
       () => ListTaskImpl(sl<TaskRepository>()));
   sl.registerFactory<TaskRepository>(
       () => TaskRepositoryImpl(sl<TaskDataSource>()));
   sl.registerFactory<TaskDataSource>(() => TaskDataSourceImpl(sl()));
-  sl.registerFactory(() => dio ?? Dio());
+  sl.registerFactory(() => taskCollection ?? FirebaseFirestore.instance.collection('task'));
   sl.registerLazySingleton(() => ListCubit(sl<ListTask>()));
   sl.registerFactory<List<TaskModel>>(() => <TaskModel>[]);
 
@@ -47,6 +52,14 @@ startModule([Dio? dio]) {
           () => SearchTaskRepositoryImpl(sl<SearchDataSource>()));
   sl.registerFactory<SearchDataSource>(() => SearchDataSourceImpl(sl()));
   sl.registerFactory(() => SearchCubit(sl<SearchListTask>()));
+
+  sl.registerFactory<EditTask>(
+          () => EditTaskImpl(sl<EditTaskRepository>()));
+  sl.registerFactory<EditTaskRepository>(
+          () => EditTaskRepositoryImpl(sl<EditTaskDataSource>()));
+  sl.registerFactory<EditTaskDataSource>(() => EditTaskDataSourceImpl(sl()));
+  sl.registerFactory(() => EditCubit(sl<EditTask>()));
+
 
 }
 

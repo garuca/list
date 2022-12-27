@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:list/features/task/add/presenter/ui/add_page.dart';
+import 'package:list/features/task/edit/presenter/ui/edit_page.dart';
 import 'package:list/features/task/list/presenter/ui/list_page.dart';
 import 'package:list/features/task/search/presenter/ui/search_page.dart';
 
@@ -32,7 +33,7 @@ class AppWidgetState extends State<AppWidget> {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const SearchPage();
+          return const ListPage();
         },
         routes: <RouteBase>[
           GoRoute(
@@ -42,11 +43,11 @@ class AppWidgetState extends State<AppWidget> {
             },
           ),
           GoRoute(
-            path: 'search',
-            builder: (BuildContext context, GoRouterState state) {
-              return const SearchPage();
-            },
-          ),
+              path: 'edit/:id/:text',
+              name: 'edit',
+              builder: (BuildContext context, GoRouterState state) {
+                return EditPage(id: state.params['id']!,text: state.params['text']!);
+              }),
         ],
       ),
     ],

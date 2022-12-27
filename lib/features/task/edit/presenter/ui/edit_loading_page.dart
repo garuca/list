@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ListLoadingPage extends StatefulWidget {
-  const ListLoadingPage({Key? key}) : super(key: key);
+class FeedLoadingPage extends StatefulWidget {
+  const FeedLoadingPage({Key? key}) : super(key: key);
 
   @override
-  ListLoadingPageState createState() => ListLoadingPageState();
+  FeedLoadingPageState createState() => FeedLoadingPageState();
 }
 
-class ListLoadingPageState extends State<ListLoadingPage>
+class FeedLoadingPageState extends State<FeedLoadingPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation gradientPosition;

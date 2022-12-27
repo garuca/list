@@ -1,25 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dio/dio.dart';
 import 'package:list/common/data/models/task_model.dart';
 import 'package:list/common/domain/entities/task.dart';
 import 'package:list/features/task/add/data/data_source/add_task_data_source.dart';
 
 class AddTaskDataSourceImpl implements AddTaskDataSource {
-  final Dio dio;
+  final CollectionReference taskCollection;
 
-  AddTaskDataSourceImpl(this.dio);
+  AddTaskDataSourceImpl(this.taskCollection);
 
   @override
-  Future<TaskModel?> addTask(Task task) async {
-    CollectionReference taskCollection =
-        FirebaseFirestore.instance.collection('task');
-    try {
-      final response = await taskCollection.add({
-        'text': task.text,
-      });
-      task.id = response.id;
-      return TaskModel(id: task.id, text: task.text);
-    } catch (e) {}
-    return null;
+  Future<TaskModel> addTask(Task task) async {
+    final response = await taskCollection.add({
+      'text': task.text,
+    });
+    task.id = response.id;
+    return TaskModel(id: task.id, text: task.text);
   }
 }
