@@ -24,7 +24,3 @@ jobs:
         run: flutter analyze .
       - name: Run tests
         run: flutter test
-      - name: Generate build
-        run: flutter build apk
-      - name: Upload generated apk
-        uses: actions/upload-artifact@master
