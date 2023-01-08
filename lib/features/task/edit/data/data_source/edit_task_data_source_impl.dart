@@ -10,7 +10,10 @@ class EditTaskDataSourceImpl implements EditTaskDataSource {
 
   @override
   Future<TaskModel?> editTask(Task task) async {
-    await taskCollection.doc(task.id).update({'text': task.text});
+    await taskCollection.doc(task.id).update({
+      'text': task.text,
+      'last_updated': FieldValue.serverTimestamp(),
+    });
     return TaskModel(id: task.id, text: task.text);
   }
 }

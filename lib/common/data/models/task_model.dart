@@ -6,18 +6,24 @@ class TaskModel implements Task {
   String? id;
   @override
   String? text;
+  @override
+  DateTime? lastUpdate;
+  @override
+  DateTime? created;
 
-  TaskModel({
-    this.id,
-    this.text,
-  });
+  TaskModel({this.id, this.text, this.lastUpdate});
 
   TaskModel.fromMap(Map<String, dynamic> json) {
     id = json['id'];
     text = json['text'];
+    lastUpdate = DateTime.fromMillisecondsSinceEpoch(json['last_updated']);
   }
   TaskModel.fromObject(QueryDocumentSnapshot queryDocumentSnapshot) {
     id = queryDocumentSnapshot.id;
     text = queryDocumentSnapshot['text'];
+    Timestamp timestamp = queryDocumentSnapshot['last_updated'];
+    Timestamp timestampCreated = queryDocumentSnapshot['created'];
+    lastUpdate = timestamp.toDate();
+    created = timestampCreated.toDate();
   }
 }
