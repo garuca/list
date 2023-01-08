@@ -39,7 +39,10 @@ class _EditPageState extends State<EditPage> {
   Widget build(BuildContext context) {
     nav() {
       BlocProvider.of<ListCubit>(context, listen: true).execute();
-      context.pop();
+
+      Future.delayed(Duration.zero, () async {
+        context.pop();
+      });
     }
 
     return Scaffold(
@@ -105,11 +108,6 @@ class _EditPageState extends State<EditPage> {
               return Container();
             }
           }),
-      floatingActionButton: const FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
     );
   }
 }
