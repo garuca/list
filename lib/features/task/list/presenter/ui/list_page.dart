@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:list/common/widgets/custom_list_view.dart';
 import 'package:list/features/task/list/presenter/list_cubit.dart';
 import 'package:list/features/task/list/presenter/list_state.dart';
 import 'package:go_router/go_router.dart';
@@ -18,7 +19,19 @@ class _MyListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              context.go('/search');
+            },
+          )
+        ],
+      ),
       body: BlocBuilder<ListCubit, ListState>(builder: (builderContext, state) {
         if (state is StartState) {
           return const Center(
