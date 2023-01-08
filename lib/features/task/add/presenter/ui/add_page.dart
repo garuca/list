@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:list/common/domain/entities/task.dart';
+import 'package:list/common/widgets/custom_text_field.dart';
+import 'package:list/common/widgets/primary_text_button.dart';
 import 'package:list/features/task/add/domain/use_cases/add_task.dart';
 import 'package:list/features/task/add/presenter/add_cubit.dart';
 import 'package:list/features/task/add/presenter/add_state.dart';
@@ -53,43 +55,24 @@ class _AddPageState extends State<AddPage> {
             if (state is StartState) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                    child: TextField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Enter a search term',
-                      ),
+                    padding: const EdgeInsets.only(right: 40, left: 40),
+                    child: CustomTextField(
                       controller: textController,
+                      text: 'Tarefa',
                     ),
                   ),
                   Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 16),
-                      child: TextButton(
-                          style: ButtonStyle(
-                            foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.blue),
-                            overlayColor:
-                                MaterialStateProperty.resolveWith<Color?>(
-                              (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.hovered)) {
-                                  return Colors.blue.withOpacity(0.04);
-                                }
-                                if (states.contains(MaterialState.focused) ||
-                                    states.contains(MaterialState.pressed)) {
-                                  return Colors.blue.withOpacity(0.12);
-                                }
-                                return null; // Defer to the widget's default.
-                              },
-                            ),
-                          ),
-                          onPressed: () {
-                            cubit.execute(Task(text: textController.text));
-                          },
-                          child: const Text('TextButton'))),
+                      child: PrimaryTextButton(
+                        text: 'Adicionar',
+                        onPressed: () {
+                          cubit.execute(Task(text: textController.text));
+                        },
+                      )),
                 ],
               );
             } else if (state is LoadingState) {
