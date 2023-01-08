@@ -62,7 +62,7 @@ class _SearchPageState extends State<SearchPage> {
             if (state is StartState) {
               return Container();
             } else if (state is LoadingState) {
-              return const Expanded(child:  FeedLoadingPage());
+              return const Expanded(child: FeedLoadingPage());
             } else if (state is SuccessState) {
               return Expanded(child: CustomListView(list: state.list ?? []));
             } else {
