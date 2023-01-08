@@ -12,9 +12,8 @@ class AddTaskDataSourceImpl implements AddTaskDataSource {
   Future<TaskModel> addTask(Task task) async {
     final response = await taskCollection.add({
       'text': task.text,
-      'last_updated':FieldValue.serverTimestamp(),
-      'created':FieldValue.serverTimestamp(),
-
+      'last_updated': FieldValue.serverTimestamp(),
+      'created': FieldValue.serverTimestamp(),
     });
     task.id = response.id;
     return TaskModel(id: task.id, text: task.text);

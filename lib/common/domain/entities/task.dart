@@ -3,10 +3,5 @@ class Task {
   String? text;
   DateTime? created;
   DateTime? lastUpdate;
-  Task({
-    this.id,
-    this.text,
-    this.lastUpdate,
-    this.created
-  });
+  Task({this.id, this.text, this.lastUpdate, this.created});
 }
