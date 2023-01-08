@@ -42,20 +42,7 @@ class _MyListPageState extends State<ListPage> {
             child: ListLoadingPage(),
           );
         } else if (state is SuccessState) {
-          return ListView.builder(
-              itemCount: state.list!.length,
-              itemBuilder: (context, i) {
-                return ListTile(
-                  title: GestureDetector(
-                      child: Text("${state.list![i].text}"),
-                      onTap: () {
-                        context.goNamed('edit', params: {
-                          'id': "${state.list![i].id}",
-                          'text': "${state.list![i].text}"
-                        });
-                      }),
-                );
-              });
+          return CustomListView(list: state.list ?? []);
         } else {
           return Container();
         }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:list/common/widgets/custom_list_view.dart';
 import 'package:list/features/task/search/presenter/ui/search_loading_page.dart';
 import 'package:list/features/task/search/presenter/search_cubit.dart';
 import 'package:list/features/task/search/presenter/search_state.dart';
@@ -52,14 +53,7 @@ class _SearchPageState extends State<SearchPage> {
             } else if (state is LoadingState) {
               return const FeedLoadingPage();
             } else if (state is SuccessState) {
-              return Expanded(
-                  child: ListView.builder(
-                      itemCount: state.list!.length,
-                      itemBuilder: (context, i) {
-                        return ListTile(
-                          title: Text("${state.list![i].text}"),
-                        );
-                      }));
+              return Expanded(child: CustomListView(list: state.list ?? []));
             } else {
               return Container();
             }
