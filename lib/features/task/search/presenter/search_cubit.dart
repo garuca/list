@@ -22,13 +22,13 @@ class SearchCubit extends Cubit<SearchState> {
   Future<void> search(String textSearch) async {
     //await cancelable.cancel();
 
-    if (textSearch.isEmpty) {
+    if (textSearch.isEmpty || textSearch.trim() == '') {
       emit(const StartState());
       return;
     }
     emit(const LoadingState());
     cancelable = CancelableOperation.fromFuture(
-        Future.delayed(const Duration(milliseconds: 800)));
+        Future.delayed(const Duration(milliseconds: 1200)));
     await cancelable.value;
     if (cancelable.isCompleted) {
       emit(await execute(textSearch));
