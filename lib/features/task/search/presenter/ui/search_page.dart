@@ -37,13 +37,24 @@ class _SearchPageState extends State<SearchPage> {
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: 54,
-            child: TextField(
-              controller: _controller,
-              onChanged: (text) {
-                context.read<SearchCubit>().search(text);
-              },
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            child: SizedBox(
+              height: 54,
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    filled: true,
+                    hintStyle: TextStyle(color: Colors.grey[800]),
+                    hintText: "Digite a tarefa desejada",
+                    fillColor: Colors.white70),
+                controller: _controller,
+                onChanged: (text) {
+                  context.read<SearchCubit>().search(text);
+                },
+              ),
             ),
           ),
           BlocBuilder<SearchCubit, SearchState>(
@@ -51,7 +62,7 @@ class _SearchPageState extends State<SearchPage> {
             if (state is StartState) {
               return Container();
             } else if (state is LoadingState) {
-              return const FeedLoadingPage();
+              return const Expanded(child:  FeedLoadingPage());
             } else if (state is SuccessState) {
               return Expanded(child: CustomListView(list: state.list ?? []));
             } else {
